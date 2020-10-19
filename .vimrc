@@ -41,6 +41,10 @@ set tabstop=4
 " Make autoindent to be 4 spaces
 set shiftwidth=4
 
+" Make search pattern "abc" find "Abc" and even "ABC"
+set ignorecase
+" If capital letter in search patter then find only exact match with case cheking
+set smartcase
 " HighLight found elements
 set hlsearch
 " HighLight found elements while typing a searching query
