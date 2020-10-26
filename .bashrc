@@ -26,17 +26,3 @@ W() {
     PS1="\[\e[0;37m\][\u\[\e[0m\] \[\e[0;36m\]\W\[\e[0;37m\]]\[\e[0m\] $ "
 }
 
-# rm() {
-#     if ! [ -d ~/.trash ]; then
-#         mkdir ~/.trash
-#     fi
-#     if [ "$1" != "" ]; then
-#         if [ "$(realpath ~/.trash)" == "$(realpath $1)" ]; then
-#             /usr/bin/rm -rf ~/.trash/*
-#         else
-#             mv "$@" ~/.trash
-#         fi
-#     else
-#         echo "Missed arguments"
-#     fi
-# }
