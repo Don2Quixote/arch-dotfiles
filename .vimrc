@@ -62,6 +62,9 @@ set ttimeoutlen=50
 " Assembler highlighting
 set ft=tasm
 
+" Prevent appending top-panel on tab-auto-completing
+set completeopt-=preview
+
 " Hiding  "~" symbols after file's end
 " let g:onedark_hide_endofbuffer = 1
 
