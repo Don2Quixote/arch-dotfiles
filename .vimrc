@@ -26,6 +26,12 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Easy navigation in filesystem. <Ctrl+P> to start
 Plugin 'kien/ctrlp.vim'
+" Go cool support
+Plugin 'fatih/vim-go'
+" Simply emmet (ctrl+y+,)
+Plugin 'mattn/emmet-vim'
+" Minimap Ctrl+m. Requires "code-minimap" to be installed
+Plugin 'wfxr/minimap.vim
 
 call vundle#end()
 
@@ -100,8 +106,7 @@ let g:mapleader=','
 
 " Make NerdTree oepn on Ctrl+e hotkey
 map <C-e> :NERDTreeToggle<CR>
-
-" map <C-p> :CtrlP /
+map <C-m> :MinimapToggle<CR>
 
 " Make any window close on Ctrl+q
 "" map <C-q> :q<CR> " Not working at unknown reason
