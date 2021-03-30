@@ -96,6 +96,12 @@ let g:NERDTreeMinimalUI = 1
 " Show hidden files in CtrlP
 let g:ctrlp_show_hidden = 1
 
+" Ignore some folders and files for CtrlP indexing
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  \ }
+
 " Close Vim if NerdTree window is the last opened window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
