@@ -86,23 +86,21 @@ cursor= #a9d3e4
 
 # Colors
 color0= #0C1330
-color1= #A15D6C
+color1= #d18a75
 color2= #87d787
-color3= #B88679
-color4= #D18A75
-color5= #405495
-color6= #00afff
-; color6= #00aacc
-; color7= #a9d3e4
-color7= #87d787
-color8= #00afff
-color9= #A15D6C
-color10= #B7576A
-color11= #B88679
-color12= #D18A75
-color13= #405495
-color14= #00afef
-color15= #a9d3e4
+color3= #ffdf5f
+color4= #00afff
+color5= #ff5fdf
+color6= #87ffff
+color7= #0c0c0c
+color8= #808080
+color9= #d70000
+color10= #00ff00
+color11= #ffff00
+color12= #5f5fff
+color13= #ff00ff
+color14= #00ffff
+color15= #ffffff
 
 [hints]
 #font = Monospace 12

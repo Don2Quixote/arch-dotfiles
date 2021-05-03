@@ -14,15 +14,12 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR=/usr/bin/vim
 export TERM=xterm # SHH working bad if got TERM=xterm-termite
 
-# cat ~/.cache/wal/sequences
-
-PS1="\[\e[0;37m\][\u\[\e[0m\] \[\e[0;36m\]\W\[\e[0;37m\]]\[\e[0m\] $ "
+PS1="\[\e[0;32m\][\u\[\e[0m\] \[\e[0;34m\]\W\[\e[0;32m\]]\[\e[0m\] $ "
 
 w() {
-    PS1="\[\e[0;37m\][\u\[\e[0m\] \[\e[0;36m\]\w\[\e[0;37m\]]\[\e[0m\] $ "
+    PS1="\[\e[0;32m\][\u\[\e[0m\] \[\e[0;34m\]\w\[\e[0;32m\]]\[\e[0m\] $ "
 }
 
 W() {
-    PS1="\[\e[0;37m\][\u\[\e[0m\] \[\e[0;36m\]\W\[\e[0;37m\]]\[\e[0m\] $ "
+    PS1="\[\e[0;32m\][\u\[\e[0m\] \[\e[0;34m\]\W\[\e[0;32m\]]\[\e[0m\] $ "
 }
-
