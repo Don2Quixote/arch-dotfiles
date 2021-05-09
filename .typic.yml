@@ -1,0 +1,46 @@
+defaultMode: "multiline" # multiline / oneline
+onelineOffset: 10 # Cursor offset in oneline mode
+progress: "bothf"
+progressBarChar: "█"
+miss: "percents" # count / percents
+packsDir: "/etc/typic/packs/en" # Path to find packs in
+width: 50 # Width of text-window
+widthMode: "percents" # percents / chars
+bordersMode: "corners" # none / corners / full. What part of box around text to show.
+showFile: "bottomcenter" # Location of label with path to current game-file.
+# Available values for "showFile" option: bottom/top+left/center/right (bottomcenter, topleft...) or none.
+exitTimeout: 500
+
+output: # Post-game message
+  format: "table" # line / column / table / none
+  fields:
+    - "file" # Path to played file
+    - "chars" # Count of typed chars
+    - "time" # Time spent
+    # - "timems" # Time in milliseconds
+    - "speed" # Chars Per Minute (CPM)
+    - "miss" # Misses' count
+    - "accuracy" # Accuracy in percents
+
+# Allowed 16 colors:
+# black, white, gray, green, red, blue, yellow, magenta, cyan,
+# lgray, lgreen, lred, lblue, lyellow, lmagenta, lcyan.
+# Actually, if it's name "green", it doesnt guarantee that you will see exactly green. (It also applies to others...)
+# It depends on your system colors.
+colors:
+  bg1: "default" # Background of not typed chars
+  bg2: "default" # Cursor color
+  bg3: "default" # Background of typed chars
+  bg4: "default" # Cursor color on mistake
+  fg1: "default" # Not typed char color
+  fg2: "yellow" # Char color under cursor
+  fg3: "gray" # Typed char color
+  fg4: "red" # Char color under cursor on mistake
+  bc1: "yellow" # Borders color
+  bc2: "red" # Borders color on mistake
+  sbg: "default"
+  sfg: "gray"
+  fpbg: "default"
+  fpfg: "gray"
+  prbg: "default"
+  prfg: "gray"
