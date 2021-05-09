@@ -196,6 +196,8 @@ bindsym $mod+r mode "resize"
 
 ###
 
+focus_follows_mouse no
+
 exec_always --no-startup-id /home/don2quixote/.config/polybar/launch.sh
 
 client.focused          #283593 #285577 #ffffff #ffffff #6a1b9a
