@@ -31,7 +31,9 @@ Plugin 'fatih/vim-go'
 " Simply emmet (ctrl+y+,)
 Plugin 'mattn/emmet-vim'
 " Minimap Ctrl+m. Requires "code-minimap" to be installed
-Plugin 'wfxr/minimap.vim
+Plugin 'wfxr/minimap.vim'
+" Git marks (new, changed, removed). <Leader>gitt to toggle.
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
@@ -110,14 +112,33 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" Prevent gitgutter from mapping keys (I actually don't know it's maps, I
+" defined my own)
+let g:gitgutter_map_keys = 0
+" Prevent gitgutter launch by default. It takes some space to display signs
+" near the lines' numbers
+let g:gitgutter_enabled = 0
+let g:gitgutter_sign_added = '▋'
+let g:gitgutter_sign_modified = '▋'
+let g:gitgutter_sign_removed = '▋'
+" To make gitgutter update oftener than roughly speaking never
+set updatetime=74
+
 " Mappings
 let g:mapleader=','
 
-" Make NerdTree oepn on Ctrl+e hotkey
 map <C-e> :NERDTreeToggle<CR>
 map <C-m> :MinimapToggle<CR>
 
-" Make any window close on Ctrl+q
-"" map <C-q> :q<CR> " Not working at unknown reason
+map <Leader>goi :GoImports<CR>
+map <Leader>goI :GoImport 
+map <Leader>goc :GoCoverage<CR>
+map <Leader>goC :GoCoverageClear<CR>
+map <Leader>gor :GoRename 
+
+map <Leader>gitt :GitGutterToggle<CR>
+map <Leader>gitn :GitGutterNextHunk<CR>
+map <Leader>gitN :GitGutterPrevHunk<CR>
+map <Leader>gitf :GitGutterFold<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
