@@ -121,6 +121,9 @@ let g:gitgutter_enabled = 0
 let g:gitgutter_sign_added = '▋'
 let g:gitgutter_sign_modified = '▋'
 let g:gitgutter_sign_removed = '▋'
+let g:gitgutter_sign_removed_first_line = '▋'
+let g:gitgutter_sign_removed_above_and_below = '▋'
+let g:gitgutter_sign_modified_removed = '▋'
 " To make gitgutter update oftener than roughly speaking never
 set updatetime=74
 
@@ -130,11 +133,14 @@ let g:mapleader=','
 map <C-e> :NERDTreeToggle<CR>
 map <C-m> :MinimapToggle<CR>
 
+" Some vim-go mappings
 map <Leader>goi :GoImports<CR>
 map <Leader>goI :GoImport 
 map <Leader>goc :GoCoverage<CR>
 map <Leader>goC :GoCoverageClear<CR>
 map <Leader>gor :GoRename 
+map <Leader>god :GoDef<CR> " Cool to use with Ctrl+w Ctrl+v
+map <Leader>goD :GoDefPop<CR>
 
 map <Leader>gitt :GitGutterToggle<CR>
 map <Leader>gitn :GitGutterNextHunk<CR>
