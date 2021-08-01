@@ -37,7 +37,17 @@ Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
+" I actually have forgotten what do next 3 lines do
 filetype plugin indent on
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+" Set different identation rules for yaml files
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" minimap settings
+let g:minimap_width = 10
+let g:minimap_git_colors = 1
 
 " Show line numbers on the left side of Vim window
 set number
@@ -51,7 +61,7 @@ set shiftwidth=4
 
 " Make search pattern "abc" find "Abc" and even "ABC"
 set ignorecase
-" If capital letter in search patter then find only exact match with case cheking
+" If capital letter in search pattern then find only exact match with case cheking
 set smartcase
 " HighLight found elements
 set hlsearch
@@ -66,9 +76,6 @@ set ft=tasm
 
 " Prevent appending top-panel on tab-auto-completing
 set completeopt-=preview
-
-" Hiding  "~" symbols after file's end
-" let g:onedark_hide_endofbuffer = 1
 
 " Setting up onedark colorscheme
 let g:onedark_termcolors = 256
@@ -112,12 +119,14 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" Leave only stdout of program in log (supress debugger's inforarmation)
+let g:go_debug_log_output = ''
+
 " Prevent gitgutter from mapping keys (I actually don't know it's maps, I
 " defined my own)
 let g:gitgutter_map_keys = 0
-" Prevent gitgutter launch by default. It takes some space to display signs
-" near the lines' numbers
-let g:gitgutter_enabled = 0
+" Force gitgutter to launch by default.
+let g:gitgutter_enabled = 1
 " Change default sigs (+, ~, -) to these prettier ones
 let g:gitgutter_sign_added = '▋'
 let g:gitgutter_sign_modified = '▋'
@@ -125,27 +134,77 @@ let g:gitgutter_sign_removed = '▋'
 let g:gitgutter_sign_removed_first_line = '▋'
 let g:gitgutter_sign_removed_above_and_below = '▋'
 let g:gitgutter_sign_modified_removed = '▋'
-" Make gitgutter update oftener than roughly speaking never
+" To make gitgutter update oftener than roughly speaking never
 set updatetime=74
+
+" Show full path to file in airline
+let g:airline_section_c = '%F'
+" Reduce mode's names  ('N' instead of 'NORMAL', 'I' instead of 'INSERT', etc.)
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n' : 'N',
+      \ 'ic': 'I',
+      \ 'i' : 'I',
+      \ 'R' : 'R',
+      \ 'c' : 'C',
+      \ 'v' : 'V',
+      \ 'V' : 'V',
+      \ 's' : 'S',
+      \ 'S' : 'S',
+      \ }
+
+" Incredibly Speed up ctrlp
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" the_silver_searcher must be installed
+if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" This probably helps with gopls's performance
+let g:ycm_gopls_args = ['-remote=auto', '-listen.timeout=15s']
+let g:ycm_gopls_binary_path = $HOME . '/.go/bin/gopls'
 
 " Mappings
 let g:mapleader=','
 
-map <C-e> :NERDTreeToggle<CR>
-map <C-m> :MinimapToggle<CR>
+map <Leader> <Plug>(easymotion-prefix)
+
+nmap <C-e> :NERDTreeToggle<CR>
+nmap <C-m> :MinimapToggle<CR>
 
 " Some vim-go mappings
-map <Leader>goi :GoImports<CR>
-map <Leader>goI :GoImport 
-map <Leader>goc :GoCoverage<CR>
-map <Leader>goC :GoCoverageClear<CR>
-map <Leader>gor :GoRename 
-map <Leader>god :GoDef<CR> " Cool to use with Ctrl+w Ctrl+v
-map <Leader>goD :GoDefPop<CR>
+autocmd FileType go nmap <Leader>imps :GoImports<CR>
+autocmd FileType go nmap <Leader>impm :GoImport 
+autocmd FileType go nmap <Leader>cov :GoCoverageToggle<CR>
+autocmd FileType go nmap <Leader>ren :GoRename 
+autocmd FileType go nmap <Leader>def :GoDef<CR>
+autocmd FileType go nmap <Leader>Def <C-w>v<C-w>T:GoDef<CR>
+autocmd FileType go nmap <Leader>p :GoDefPop<CR>
+autocmd FileType go nmap <Leader>bug :tab split<CR>:GoDebugStart<CR>
 
-map <Leader>gitt :GitGutterToggle<CR>
-map <Leader>gitn :GitGutterNextHunk<CR>
-map <Leader>gitN :GitGutterPrevHunk<CR>
-map <Leader>gitf :GitGutterFold<CR>
+" Default vim-go's debugger's mappings are stupid and becomes disabled somewhy
+autocmd FileType go nmap db :GoDebugBreakpoint<CR>
+autocmd FileType go nmap dS :tab split<CR>:GoDebugStart<CR>
+autocmd FileType go nmap dSS :GoDebugStop<CR>
+autocmd FileType go nmap dc :GoDebugContinue<CR>
+autocmd FileType go nmap ds :GoDebugStep<CR>
+autocmd FileType go nmap dn :GoDebugNext<CR>
+autocmd FileType go nmap dp :GoDebugPrint<CR>
 
-map <Leader> <Plug>(easymotion-prefix)
+" Sooqa, it's hard to use it
+nmap <Leader>gitt :GitGutterToggle<CR>
+nmap <Leader>gitu :GitGutterUndoHunk<CR>
+nmap <Leader>gitn :GitGutterNextHunk<CR>
+nmap <Leader>gitN :GitGutterPrevHunk<CR>
+nmap <Leader>gitf :GitGutterFold<CR>
+
+" Open current file in new tab (duplicate current tab)
+nmap dup <C-w>v<C-w>T
+
+" Remap ctrlp to work by default in local directory only. Leader+ctrlP will
+" scann entire project directory
+let g:ctrlp_map = ''
+map <Leader><C-p> :CtrlP<CR>
+map <C-p> :CtrlPCurWD<CR>
+
+
